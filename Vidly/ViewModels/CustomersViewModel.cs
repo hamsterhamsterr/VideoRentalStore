@@ -23,6 +23,8 @@ namespace Vidly.ViewModels
 
         public Customer GetCustomerById(int id)
         {
+            if (!_customers.ContainsKey(id))
+                return null;
             return _customers[id];
         }
 

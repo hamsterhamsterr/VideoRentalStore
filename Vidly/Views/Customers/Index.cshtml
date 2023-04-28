@@ -15,7 +15,7 @@
                 @*@{ var fullName = customer.Name + " " + customer.LastName; }
                 @Html.ActionLink(fullName,
                     "Customer", "Customers", new { fullName = fullName }, null);*@  
-                <a href="Details/@customer.Id">@(customer.Name + " " + customer.LastName)</a>       
+                <a href="/Customers/Details/@customer.Id">@(customer.Name + " " + customer.LastName)</a>       
 </td>
 
 </tr>

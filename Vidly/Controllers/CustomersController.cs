@@ -29,10 +29,13 @@ namespace Vidly.Controllers
             return View(viewModel);
         }
 
-        [Route("Details/{id}")]
+        [Route("Customers/Details/{id}")]
         public ActionResult Customer(int id)
         {
             var customer = new CustomersViewModel().GetCustomerById(id);
+
+            if (customer == null)
+                return HttpNotFound();
 
             return View("Customer", customer);
         }
