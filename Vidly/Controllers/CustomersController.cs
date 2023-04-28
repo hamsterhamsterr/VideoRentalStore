@@ -24,12 +24,17 @@ namespace Vidly.Controllers
                 }
             };
 
-            var viewModel = new CustomersListViewModel
-            {
-                Customers = customers
-            };
+            var viewModel = new CustomersViewModel();
 
             return View(viewModel);
+        }
+
+        [Route("Details/{id}")]
+        public ActionResult Customer(int id)
+        {
+            var customer = new CustomersViewModel().GetCustomerById(id);
+
+            return View("Customer", customer);
         }
     }
 }
