@@ -62,15 +62,33 @@ namespace Vidly.Controllers
             return Content("id=" + id);
         }
 
-        public ActionResult Index(int? pageIndex, string sortBy)
+        //public ActionResult Index(int? pageIndex, string sortBy)
+        //{
+        //    if (!pageIndex.HasValue)
+        //        pageIndex = 1;
+
+        //    if (string.IsNullOrWhiteSpace(sortBy))
+        //        sortBy = "Name";
+
+        //    return Content(String.Format("pageIndex={0}&sortBy={1}", pageIndex, sortBy));
+        //}
+
+        public ActionResult Index()
         {
-            if (!pageIndex.HasValue)
-                pageIndex = 1;
+            var viewModel = new MoviesViewModel();
 
-            if (string.IsNullOrWhiteSpace(sortBy))
-                sortBy = "Name";
+            return View("Index", viewModel);
+        }
 
-            return Content(String.Format("pageIndex={0}&sortBy={1}", pageIndex, sortBy));
+        [Route("Movies/Details/{id}")]
+        public ActionResult Movie(int id)
+        {
+            var movie = new MoviesViewModel().GetMovieById(id);
+
+            if (movie == null)
+                return HttpNotFound();
+
+            return View("Movie", movie);
         }
 
         [Route("movies/released/{year}/{month:regex(\\d{4}):range(1,12)}")]
