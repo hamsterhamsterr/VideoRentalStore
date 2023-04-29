@@ -183,11 +183,20 @@
     <Compile Include="Migrations\202304291445056_DeleteLastNameFromCustomersTable.Designer.cs">
       <DependentUpon>202304291445056_DeleteLastNameFromCustomersTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202304291452161_AddIsSubscribedToCustomer.cs" />
+    <Compile Include="Migrations\202304291452161_AddIsSubscribedToCustomer.Designer.cs">
+      <DependentUpon>202304291452161_AddIsSubscribedToCustomer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202304291502357_AddMembershipType.cs" />
+    <Compile Include="Migrations\202304291502357_AddMembershipType.Designer.cs">
+      <DependentUpon>202304291502357_AddMembershipType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MembershipType.cs" />
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -275,6 +284,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202304291445056_DeleteLastNameFromCustomersTable.resx">
       <DependentUpon>202304291445056_DeleteLastNameFromCustomersTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304291452161_AddIsSubscribedToCustomer.resx">
+      <DependentUpon>202304291452161_AddIsSubscribedToCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304291502357_AddMembershipType.resx">
+      <DependentUpon>202304291502357_AddMembershipType.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
