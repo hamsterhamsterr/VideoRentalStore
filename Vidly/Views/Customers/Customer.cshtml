@@ -1,8 +1,9 @@
 ﻿@model Vidly.Models.Customer
 @{
-    ViewBag.Title = "Customer";
+    var fullName = String.Concat(Model.Name, " ", Model.LastName);
+    ViewBag.Title = fullName;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@String.Concat(Model.Name, " ", Model.LastName)</h2>
+<h2>@fullName</h2>
 

@@ -7,19 +7,20 @@
 <h2>Customers</h2>
 @if (Model.Customers == null || Model.Customers.Count() == 0)
 {
-    <caption>We don't have any customers yet.</caption>
+    <p>We don't have any customers yet.</p>
 }
 else
 {
     <table class="table table-bordered table-hover">
-        <tr><th>Customers</th></tr>
+        <thead>
+            <tr>
+                <th>Customer</th>
+            </tr>
+        </thead>
         @foreach (var customer in Model.Customers)
         {
         <tr>
             <td>
-                @*@{ var fullName = customer.Name + " " + customer.LastName; }
-                    @Html.ActionLink(fullName,
-                        "Customer", "Customers", new { fullName = fullName }, null);*@
                 <a href="/Customers/Details/@customer.Id">@(customer.Name + " " + customer.LastName)</a>
             </td>
         </tr>
