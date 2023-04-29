@@ -199,6 +199,10 @@
     <Compile Include="Migrations\202304291829260_ApplyAnnotationsToCustomerName.Designer.cs">
       <DependentUpon>202304291829260_ApplyAnnotationsToCustomerName.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202304291932304_CreateMoviesTable.cs" />
+    <Compile Include="Migrations\202304291932304_CreateMoviesTable.Designer.cs">
+      <DependentUpon>202304291932304_CreateMoviesTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -208,7 +212,6 @@
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="ViewModels\MoviesViewModel.cs" />
     <Compile Include="ViewModels\RandomMovieViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -303,6 +306,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202304291829260_ApplyAnnotationsToCustomerName.resx">
       <DependentUpon>202304291829260_ApplyAnnotationsToCustomerName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304291932304_CreateMoviesTable.resx">
+      <DependentUpon>202304291932304_CreateMoviesTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

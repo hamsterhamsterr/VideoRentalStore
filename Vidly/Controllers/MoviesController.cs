@@ -37,6 +37,18 @@ namespace Vidly.Controllers
         //}
         #endregion
 
+        private ApplicationDbContext _context;
+
+        public MoviesController()
+        {
+            _context = new ApplicationDbContext();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            base.Dispose(disposing);
+        }
+
         // GET: Movies/Random
         public ActionResult Random()
         {
@@ -75,15 +87,15 @@ namespace Vidly.Controllers
 
         public ActionResult Index()
         {
-            var viewModel = new MoviesViewModel();
+            var movies = _context.Movies;
 
-            return View("Index", viewModel);
+            return View("Index", movies);
         }
 
         [Route("Movies/Details/{id}")]
         public ActionResult Movie(int id)
         {
-            var movie = new MoviesViewModel().GetMovieById(id);
+            var movie = _context.Movies.SingleOrDefault(m => m.Id == id);
 
             if (movie == null)
                 return HttpNotFound();
