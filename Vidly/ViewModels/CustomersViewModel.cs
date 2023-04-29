@@ -15,9 +15,9 @@ namespace Vidly.ViewModels
         {
             _customers = new Dictionary<int, Customer>();
             _customers.Add(
-                1, new Customer { Id = 1, Name = "John", LastName = "Smith" });
+                1, new Customer { Id = 1, Name = "John Smith", });
             _customers.Add(
-                2, new Customer { Id = 2, Name = "Mary", LastName = "Williams" });
+                2, new Customer { Id = 2, Name = "Mary Williams" });
 
         }
 
