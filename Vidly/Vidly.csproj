@@ -227,6 +227,22 @@
     <Compile Include="Migrations\202304301129254_PopulateGenresTable.Designer.cs">
       <DependentUpon>202304301129254_PopulateGenresTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202304301139095_AddColumnsInMoviesTable.cs" />
+    <Compile Include="Migrations\202304301139095_AddColumnsInMoviesTable.Designer.cs">
+      <DependentUpon>202304301139095_AddColumnsInMoviesTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202304301204563_Add foreign key on table Genres in table Movies.cs" />
+    <Compile Include="Migrations\202304301204563_Add foreign key on table Genres in table Movies.Designer.cs">
+      <DependentUpon>202304301204563_Add foreign key on table Genres in table Movies.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202304301231438_Change type of GenreId.cs" />
+    <Compile Include="Migrations\202304301231438_Change type of GenreId.Designer.cs">
+      <DependentUpon>202304301231438_Change type of GenreId.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202304301249486_Make column %27Name%27 in Movies table not nullable.cs" />
+    <Compile Include="Migrations\202304301249486_Make column %27Name%27 in Movies table not nullable.Designer.cs">
+      <DependentUpon>202304301249486_Make column %27Name%27 in Movies table not nullable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -352,6 +368,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202304301129254_PopulateGenresTable.resx">
       <DependentUpon>202304301129254_PopulateGenresTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304301139095_AddColumnsInMoviesTable.resx">
+      <DependentUpon>202304301139095_AddColumnsInMoviesTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304301204563_Add foreign key on table Genres in table Movies.resx">
+      <DependentUpon>202304301204563_Add foreign key on table Genres in table Movies.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304301231438_Change type of GenreId.resx">
+      <DependentUpon>202304301231438_Change type of GenreId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304301249486_Make column %27Name%27 in Movies table not nullable.resx">
+      <DependentUpon>202304301249486_Make column %27Name%27 in Movies table not nullable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
