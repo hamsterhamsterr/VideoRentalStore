@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Vidly.Models;
 using Vidly.ViewModels;
+using System.Data.Entity;
 
 namespace Vidly.Controllers
 {
@@ -87,7 +88,7 @@ namespace Vidly.Controllers
 
         public ActionResult Index()
         {
-            var movies = _context.Movies;
+            var movies = _context.Movies.Include(m => m.Genre);
 
             return View("Index", movies);
         }
@@ -95,7 +96,7 @@ namespace Vidly.Controllers
         [Route("Movies/Details/{id}")]
         public ActionResult Movie(int id)
         {
-            var movie = _context.Movies.SingleOrDefault(m => m.Id == id);
+            var movie = _context.Movies.Include(m => m.Genre).SingleOrDefault(m => m.Id == id);
 
             if (movie == null)
                 return HttpNotFound();
