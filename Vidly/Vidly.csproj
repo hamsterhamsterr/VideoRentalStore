@@ -203,6 +203,14 @@
     <Compile Include="Migrations\202304291932304_CreateMoviesTable.Designer.cs">
       <DependentUpon>202304291932304_CreateMoviesTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202304300830395_UpdateTableMembershipType.cs" />
+    <Compile Include="Migrations\202304300830395_UpdateTableMembershipType.Designer.cs">
+      <DependentUpon>202304300830395_UpdateTableMembershipType.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202304300833030_AddDataToMembershipTypeTable.cs" />
+    <Compile Include="Migrations\202304300833030_AddDataToMembershipTypeTable.Designer.cs">
+      <DependentUpon>202304300833030_AddDataToMembershipTypeTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -309,6 +317,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202304291932304_CreateMoviesTable.resx">
       <DependentUpon>202304291932304_CreateMoviesTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304300830395_UpdateTableMembershipType.resx">
+      <DependentUpon>202304300830395_UpdateTableMembershipType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304300833030_AddDataToMembershipTypeTable.resx">
+      <DependentUpon>202304300833030_AddDataToMembershipTypeTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
