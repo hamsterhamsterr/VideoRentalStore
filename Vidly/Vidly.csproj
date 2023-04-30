@@ -211,6 +211,14 @@
     <Compile Include="Migrations\202304300833030_AddDataToMembershipTypeTable.Designer.cs">
       <DependentUpon>202304300833030_AddDataToMembershipTypeTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202304300937128_AddColumnBirthdateToCustomersTable.cs" />
+    <Compile Include="Migrations\202304300937128_AddColumnBirthdateToCustomersTable.Designer.cs">
+      <DependentUpon>202304300937128_AddColumnBirthdateToCustomersTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202304300938071_AddBirthdateDataToCustomersTable.cs" />
+    <Compile Include="Migrations\202304300938071_AddBirthdateDataToCustomersTable.Designer.cs">
+      <DependentUpon>202304300938071_AddBirthdateDataToCustomersTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -323,6 +331,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202304300833030_AddDataToMembershipTypeTable.resx">
       <DependentUpon>202304300833030_AddDataToMembershipTypeTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304300937128_AddColumnBirthdateToCustomersTable.resx">
+      <DependentUpon>202304300937128_AddColumnBirthdateToCustomersTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304300938071_AddBirthdateDataToCustomersTable.resx">
+      <DependentUpon>202304300938071_AddBirthdateDataToCustomersTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
