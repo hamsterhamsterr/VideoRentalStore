@@ -16,6 +16,7 @@ namespace Vidly.Dtos
         public string Name { get; set; }
 
         //[Min18YearsIfAMember]
+        // Should be one endpoint
         public DateTime? Birthdate { get; set; }
 
         public bool IsSubscribedToNewsletter { get; set; }
