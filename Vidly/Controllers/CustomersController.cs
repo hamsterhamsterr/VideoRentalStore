@@ -64,8 +64,7 @@ namespace Vidly.Controllers
 
             _context.SaveChanges();
 
-            //return RedirectToAction("Index", "Customers");
-            return new EmptyResult();
+            return RedirectToAction("Index", "Customers");          
         }
 
         public ActionResult Index()
