@@ -65,6 +65,11 @@ namespace Vidly.Models
     public class RegisterViewModel
     {
         [Required]
+        // Required for view
+        [Display(Name = "Driving License")]
+        public string DrivingLicense { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Адрес электронной почты")]
         public string Email { get; set; }
