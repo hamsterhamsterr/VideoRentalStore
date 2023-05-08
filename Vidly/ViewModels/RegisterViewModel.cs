@@ -15,7 +15,7 @@ namespace Vidly.ViewModels
 
         [Required]
         // Required for view
-        [MaxLength(50, ErrorMessage = "Should be less or equal 50 characters")]
+        [MaxLength(50, ErrorMessage = "Should be less or equal 50 characters")]        
         public string Phone { get; set; }
 
         [Required]

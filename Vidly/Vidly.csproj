@@ -276,6 +276,10 @@
     <Compile Include="Migrations\202305061657071_AddDrivingLicenseToApplicationUser.Designer.cs">
       <DependentUpon>202305061657071_AddDrivingLicenseToApplicationUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202305081101449_Make PhoneNumber column not null and max length 50.cs" />
+    <Compile Include="Migrations\202305081101449_Make PhoneNumber column not null and max length 50.Designer.cs">
+      <DependentUpon>202305081101449_Make PhoneNumber column not null and max length 50.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
@@ -610,6 +614,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202305061657071_AddDrivingLicenseToApplicationUser.resx">
       <DependentUpon>202305061657071_AddDrivingLicenseToApplicationUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305081101449_Make PhoneNumber column not null and max length 50.resx">
+      <DependentUpon>202305081101449_Make PhoneNumber column not null and max length 50.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

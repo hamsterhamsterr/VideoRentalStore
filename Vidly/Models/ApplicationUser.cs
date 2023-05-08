@@ -14,6 +14,21 @@ namespace Vidly.Models
         [StringLength(255)]
         public string DrivingLicense { get; set; }
 
+        [Required]
+        [StringLength(50)]
+        public override string PhoneNumber
+        {
+            get
+            {
+                return base.PhoneNumber;
+            }
+
+            set
+            {
+                base.PhoneNumber = value;
+            }
+        }
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Обратите внимание, что authenticationType должен совпадать с типом, определенным в CookieAuthenticationOptions.AuthenticationType
