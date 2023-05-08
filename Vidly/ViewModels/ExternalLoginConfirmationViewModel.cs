@@ -13,6 +13,10 @@ namespace Vidly.ViewModels
         public string Email { get; set; }
 
         [Required]
+        [Display(Name = "Driving License")]
+        public string DrivingLicense { get; set; }
+
+        [Required]
         [MaxLength(50, ErrorMessage = "Should be less or equal 50 characters")]
         public string Phone { get; set; }
     }
