@@ -8,6 +8,10 @@ namespace Vidly.Models
         [Required]
         [Display(Name = "Адрес электронной почты")]
         public string Email { get; set; }
+
+        [Required]
+        [MaxLength(50, ErrorMessage = "Should be less or equal 50 characters")]
+        public string Phone { get; set; }
     }
 
     public class ExternalLoginListViewModel
@@ -68,6 +72,11 @@ namespace Vidly.Models
         // Required for view
         [Display(Name = "Driving License")]
         public string DrivingLicense { get; set; }
+
+        [Required]
+        // Required for view
+        [MaxLength(50, ErrorMessage = "Should be less or equal 50 characters")]
+        public string Phone { get; set; }
 
         [Required]
         [EmailAddress]
