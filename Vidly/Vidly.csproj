@@ -213,6 +213,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\CustomersController.cs" />
     <Compile Include="Controllers\Api\MoviesController.cs" />
+    <Compile Include="Controllers\Api\NewRentalsController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -221,6 +222,7 @@
     <Compile Include="Dtos\GenreDto.cs" />
     <Compile Include="Dtos\MembershipTypeDto.cs" />
     <Compile Include="Dtos\MovieDto.cs" />
+    <Compile Include="Dtos\NewRentalDto.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -305,6 +307,18 @@
     <Compile Include="Migrations\202305081101449_Make PhoneNumber column not null and max length 50.Designer.cs">
       <DependentUpon>202305081101449_Make PhoneNumber column not null and max length 50.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202305111227565_Create Rental table.cs" />
+    <Compile Include="Migrations\202305111227565_Create Rental table.Designer.cs">
+      <DependentUpon>202305111227565_Create Rental table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305111453167_Add Availability column to the Movies table.cs" />
+    <Compile Include="Migrations\202305111453167_Add Availability column to the Movies table.Designer.cs">
+      <DependentUpon>202305111453167_Add Availability column to the Movies table.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305111504336_Rename column Availability to NumberAvailable and add data to this column.cs" />
+    <Compile Include="Migrations\202305111504336_Rename column Availability to NumberAvailable and add data to this column.Designer.cs">
+      <DependentUpon>202305111504336_Rename column Availability to NumberAvailable and add data to this column.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
@@ -314,6 +328,7 @@
     <Compile Include="Models\MembershipType.cs" />
     <Compile Include="Models\Min18YearsIfAMember.cs" />
     <Compile Include="Models\Movie.cs" />
+    <Compile Include="Models\Rental.cs" />
     <Compile Include="Models\RoleName.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -646,6 +661,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202305081101449_Make PhoneNumber column not null and max length 50.resx">
       <DependentUpon>202305081101449_Make PhoneNumber column not null and max length 50.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305111227565_Create Rental table.resx">
+      <DependentUpon>202305111227565_Create Rental table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305111453167_Add Availability column to the Movies table.resx">
+      <DependentUpon>202305111453167_Add Availability column to the Movies table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305111504336_Rename column Availability to NumberAvailable and add data to this column.resx">
+      <DependentUpon>202305111504336_Rename column Availability to NumberAvailable and add data to this column.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
