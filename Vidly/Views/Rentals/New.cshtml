@@ -78,12 +78,18 @@
                 display: 'name',
                 source: movies,
                 limit: 10
-            }).on("typeahead:select", function(e, movie) {
-                $("#movies").append("<li class='list-group-item'>" + movie.name + "</li>");
+            }).on("typeahead:select", function (e, movie) {
+
+                if ($("#movies li").length >= 5) {
+                    toastr.error("Customer can't rent more than 5 movies");
+                }
+                else {
+                    $("#movies").append("<li class='list-group-item'>" + movie.name + "</li>");
+
+                    vm.movieIds.push(movie.id);
+                }
 
                 $("#movie").typeahead("val", "");
-
-                vm.movieIds.push(movie.id);
             });
 
             $.validator.addMethod("validCustomer", function () {
