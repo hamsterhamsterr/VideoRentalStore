@@ -11,7 +11,7 @@
     <div class="form-group">
         <label>Customer</label>
         <div class="tt-container">
-            <input id="customer" name="customer" data-rule-validCustomer="true" required type="text" value="" class="form-control" />
+            <input id="customer" name="customer" data-rule-validCustomer="true" data-rule-notDelinquent="true" required type="text" value="" class="form-control" />
         </div>
     </div>
 
@@ -58,6 +58,7 @@
                 source: customers,
                 limit: 10
             }).on("typeahead:select", function (e, customer) {
+                vm.customer = customer;
                 vm.customerId = customer.id;
             });
 
@@ -98,7 +99,11 @@
 
             $.validator.addMethod("atLeastOneMovie", function () {
                 return vm.movieIds.length > 0;
-            }, "Please select at least one movie.")
+            }, "Please select at least one movie.");
+
+            $.validator.addMethod("notDelinquent", function () {
+                return vm.customer.delinquent === false;
+            }, "This customer is delinquent on the payment");
 
             var validator = $("#newRental").validate({
                 submitHandler: function () {
