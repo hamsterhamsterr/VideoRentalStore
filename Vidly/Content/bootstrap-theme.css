@@ -22,6 +22,10 @@ h2, .h2 {
     width: 300px;
 }
 
+.delinquent {
+    color: red;
+}
+
 .body-content {
     padding-top: 20px;
 }

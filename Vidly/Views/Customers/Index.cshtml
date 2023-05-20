@@ -14,6 +14,7 @@
             <th>Customer</th>
             <th>Membership Type</th>
             <th>Delete</th>
+            <th>Delinquent</th>
         </tr>
     </thead>
     <tbody></tbody>
@@ -31,6 +32,11 @@
                     {
                         data: "name",
                         render: function (data, type, customer) {
+                            if (customer.delinquent === true) {
+                                return "<a href='/Customers/Edit/" + customer.id + "'>" + customer.name + "</a>"
+                                    + "<span class='delinquent'> (Delinquent)</span> ";
+                            }
+
                             return "<a href='/Customers/Edit/" + customer.id + "'>" + customer.name + "</a>"
                         }
                     },
@@ -42,8 +48,19 @@
                         render: function (data) {
                             return "<button class='btn-link js-delete' data-customer-id=" + data + ">Delete</button>"
                         }
-                    }
+                    },
+                    {
+                        data: "delinquent",
+                        render: function (data, type, customer) {
+                            if (data === false) {
+                                return "<button class='btn-link js-delinquent' data-customer-id=" + customer.id + " data-customer-delinquent=" + customer.delinquent + ">Mark as delinquent</button>"
+                            }
+                            else {
 
+                                return "<button class='btn-link js-delinquent' data-customer-id=" + customer.id + " data-customer-delinquent=" + customer.delinquent + ">Remove delinquent mark</button>"
+                            }                         
+                        }
+                    }
                 ]
             });
 
@@ -57,6 +74,32 @@
                             method: "DELETE",
                             success: function () {
                                 table.row(button.parents("tr")).remove().draw();
+                            }
+                        });
+                    }
+                });
+            });
+
+            $("#customers").on("click", ".js-delinquent", function () {
+                var button = $(this);
+
+                $.ajax({
+                    url: "/api/customers/" + button.attr("data-customer-id"),
+                    method: "GET",
+                    success: function (data) {
+                        if (data.delinquent === false) {
+                            data.delinquent = true;
+                        }
+                        else {
+                            data.delinquent = false;
+                        }
+
+                        $.ajax({
+                            url: "/api/customers/" + data.id,
+                            method: "PUT",
+                            data: data,
+                            success: function () {
+                                table.ajax.reload();
                             }
                         });
                     }

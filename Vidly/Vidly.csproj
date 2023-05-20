@@ -324,6 +324,10 @@
     <Compile Include="Migrations\202305111504336_Rename column Availability to NumberAvailable and add data to this column.Designer.cs">
       <DependentUpon>202305111504336_Rename column Availability to NumberAvailable and add data to this column.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202305200915225_Add Delinquent column.cs" />
+    <Compile Include="Migrations\202305200915225_Add Delinquent column.Designer.cs">
+      <DependentUpon>202305200915225_Add Delinquent column.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
@@ -704,6 +708,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202305111504336_Rename column Availability to NumberAvailable and add data to this column.resx">
       <DependentUpon>202305111504336_Rename column Availability to NumberAvailable and add data to this column.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305200915225_Add Delinquent column.resx">
+      <DependentUpon>202305200915225_Add Delinquent column.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
