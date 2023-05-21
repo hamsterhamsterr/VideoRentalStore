@@ -6,7 +6,7 @@
 
 <h2>Customers</h2>
 <p>
-    @Html.ActionLink("New Customer", "New", "Customers", null, new { @class = "btn btn-primary" })
+    @Html.ActionLink("NEW CUSTOMER", "New", "Customers", null, new { @class = "btn btn-primary" })
 </p>
 <table id="customers" class="table table-bordered table-hover">
     <thead>
@@ -33,11 +33,11 @@
                         data: "name",
                         render: function (data, type, customer) {
                             if (customer.delinquent === true) {
-                                return "<a href='/Customers/Edit/" + customer.id + "'>" + customer.name + "</a>"
+                                return "<a href='/Customers/Details/" + customer.id + "'>" + customer.name + "</a>"
                                     + "<span class='delinquent'> (Delinquent)</span> ";
                             }
 
-                            return "<a href='/Customers/Edit/" + customer.id + "'>" + customer.name + "</a>"
+                            return "<a href='/Customers/Details/" + customer.id + "'>" + customer.name + "</a>"
                         }
                     },
                     {
