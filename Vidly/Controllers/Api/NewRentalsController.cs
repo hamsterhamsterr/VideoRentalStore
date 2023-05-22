@@ -80,7 +80,7 @@ namespace Vidly.Controllers.Api
         }
 
         [HttpPut]
-        public IHttpActionResult UpdateRental(int id, [FromBody] int[] movieIds)
+        public IHttpActionResult UpdateRental(int id, double discount, [FromBody] int[] movieIds)
         {
             var rentals = _context.Rentals
                 .Include(r => r.Customer)
@@ -97,10 +97,16 @@ namespace Vidly.Controllers.Api
             foreach (var rental in rentals)
             {
                 rental.DateReturned = DateTime.Now;
+                double amount = 0;
+                if (discount > 0 && discount <= 100)
+                    amount = Payment.GetTotalPrice(rental.Customer, rental, discount);
+                else
+                    amount = Payment.GetTotalPrice(rental.Customer, rental, null);
+
                 payments.Add(new Payment
                 {
                     Rental = rental,
-                    Amount = Payment.GetTotalPrice(rental.Customer, rental, null)
+                    Amount = amount
                 });
             }
 

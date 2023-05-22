@@ -23,6 +23,13 @@
                 </div>
             </div>
 
+            <div class= "form-group">
+                <label > Discount </label>
+                <div class= "tt-container">
+                    <input id = "discount" name = "discount" type = "number" class= "form-control" />
+                </div>
+            </div>
+
             <div class="form-group">
                 <p class="bold">
                     Total Price:
@@ -44,11 +51,25 @@
     @Scripts.Render("~/bundles/jqueryval")
     <script>
         $(document).ready(function () {
-
+            
             var vm = {
                 movieIds: [],
-                price: 0
+                price: 0,
             };
+
+            function getTotalPrice() {
+
+                var totalPrice = vm.price * (1 - vm.customer.membershipType.discountRate / 100)
+
+                $("#totalPrice").text(vm.price + "$" + " - " + vm.customer.membershipType.discountRate + "% (Membership)")
+                if (vm.discount) {
+                    $("#totalPrice").append(" - " + vm.discount + "%");
+                    $("#totalPrice").append(" = " + totalPrice * (1 - vm.discount / 100) + "$");
+                }
+                else {
+                    $("#totalPrice").append(" = " + totalPrice + "$");
+                }
+            }
 
             var customers = new Bloodhound({
                 datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
@@ -104,9 +125,9 @@
                                 url: "/api/newRentals/" + data,
                                 method: "GET",
                                 success: function (data) {
-                                    vm.price += data * 2;                                   
-                                    var totalPrice = vm.price * (1 - vm.customer.membershipType.discountRate / 100)                                   
-                                    $("#totalPrice").text(vm.price + "$" + " - " + vm.customer.membershipType.discountRate + "% (Membership) = " + totalPrice + "$");
+                                    vm.price += data * 2;
+
+                                    getTotalPrice();
 
                                     $("#movies").append("<li class='list-group-item'>" + movie.name + " - days rented: " + data + "</li>");
                                     vm.movieIds.push(movie.id);
@@ -118,6 +139,18 @@
                 $("#movie").typeahead("val", "");
             });
 
+            $("#discount").on("input", function () {
+                var discount = parseInt(this.value);
+
+                if (!isNaN(discount)) {
+                    vm.discount = discount;
+                }
+
+                if (vm.movieIds.length !== 0) {
+                    getTotalPrice();
+                }
+            });
+
             $.validator.addMethod("validCustomer", function () {
                 return vm.customerId && vm.customerId !== 0;
             }, "Please select a valid customer.");
@@ -127,10 +160,18 @@
             }, "Please select at least one movie.");
 
             var validator = $("#returnMovie").validate({
+
                 submitHandler: function () {
-                    console.log(vm.movieIds);
+                    var updateUrl = "";
+                    if (isNaN(vm.discount)) {
+                        updateUrl = "/api/newRentals/?Id=" + vm.customerId + "&discount=" + 0;
+                    }
+                    else {
+                        updateUrl = "/api/newRentals/?Id=" + vm.customerId + "&discount=" + vm.discount;
+                    }
+
                     $.ajax({
-                        url: "/api/newRentals/" + vm.customerId,
+                        url: updateUrl,
                         method: "PUT",
                         contentType: "application/json",
                         data: JSON.stringify(vm.movieIds)

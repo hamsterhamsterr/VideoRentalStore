@@ -25,7 +25,7 @@ namespace Vidly.Models
             if (!discount.HasValue)
                 return price;
             else
-                return price * discount.Value;
+                return price * (1 - discount.Value / 100);
         }
     }
 }
