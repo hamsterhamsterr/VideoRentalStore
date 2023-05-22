@@ -51,6 +51,26 @@ namespace Vidly.Controllers.Api
             return Ok();
         }
 
+        [HttpPut]
+        public IHttpActionResult UpdateRental(int id, [FromBody] int[] movieIds)
+        {
+            var rentals = _context.Rentals
+                .Include(r => r.Customer)
+                .Include(r => r.Movie)
+                .Where(r => r.Customer.Id == id && movieIds.Contains(r.Movie.Id))
+                .ToList();
+
+            if (rentals == null)
+                return NotFound();
+
+            foreach (var rental in rentals)
+                rental.DateReturned = DateTime.Now;
+
+            _context.SaveChanges();
+
+            return Ok();
+        }
+
         [HttpDelete]
         public IHttpActionResult DeleteRental(int id, [FromBody] int[] movieIds)
         {
