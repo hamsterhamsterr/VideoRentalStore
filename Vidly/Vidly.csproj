@@ -336,6 +336,10 @@
     <Compile Include="Migrations\202305220653017_Remove column IsActiveRental from Rentals table.Designer.cs">
       <DependentUpon>202305220653017_Remove column IsActiveRental from Rentals table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202305220722149_Create Payment table.cs" />
+    <Compile Include="Migrations\202305220722149_Create Payment table.Designer.cs">
+      <DependentUpon>202305220722149_Create Payment table.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
@@ -345,6 +349,7 @@
     <Compile Include="Models\MembershipType.cs" />
     <Compile Include="Models\Min18YearsIfAMember.cs" />
     <Compile Include="Models\Movie.cs" />
+    <Compile Include="Models\Payment.cs" />
     <Compile Include="Models\Rental.cs" />
     <Compile Include="Models\RoleName.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -726,6 +731,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202305220653017_Remove column IsActiveRental from Rentals table.resx">
       <DependentUpon>202305220653017_Remove column IsActiveRental from Rentals table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305220722149_Create Payment table.resx">
+      <DependentUpon>202305220722149_Create Payment table.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

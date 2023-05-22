@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -18,6 +19,33 @@ namespace Vidly.Controllers.Api
         public NewRentalsController()
         {
             _context = new ApplicationDbContext();
+        }
+
+        [HttpGet]
+        public IHttpActionResult GetRentalId(int id, int movieId)
+        {
+            var rental = _context.Rentals
+                .Include(r => r.Customer)
+                .Include(r => r.Movie)
+                .SingleOrDefault(r => r.Customer.Id == id && r.Movie.Id == movieId);
+
+            if (rental == null)
+                return NotFound();
+
+            return Ok(rental.RentalId);
+        }
+
+        [HttpGet]
+        public IHttpActionResult GetAmountOfDaysRental(int id)
+        {
+            var rental = _context.Rentals.SingleOrDefault(r => r.RentalId == id);
+
+            if (rental == null)
+                return NotFound();
+
+            var days = (DateTime.Now - rental.DateRented).Days;
+
+            return Ok(days);
         }
 
         [HttpPost]
@@ -56,6 +84,7 @@ namespace Vidly.Controllers.Api
         {
             var rentals = _context.Rentals
                 .Include(r => r.Customer)
+                .Include(r => r.Customer.MembershipType)
                 .Include(r => r.Movie)
                 .Where(r => r.Customer.Id == id && movieIds.Contains(r.Movie.Id))
                 .ToList();
@@ -63,9 +92,19 @@ namespace Vidly.Controllers.Api
             if (rentals == null)
                 return NotFound();
 
-            foreach (var rental in rentals)
-                rental.DateReturned = DateTime.Now;
+            var payments = new List<Payment>();
 
+            foreach (var rental in rentals)
+            {
+                rental.DateReturned = DateTime.Now;
+                payments.Add(new Payment
+                {
+                    Rental = rental,
+                    Amount = Payment.GetTotalPrice(rental.Customer, rental, null)
+                });
+            }
+
+            _context.Payments.AddRange(payments);
             _context.SaveChanges();
 
             return Ok();

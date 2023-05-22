@@ -6,29 +6,39 @@
 
 <h2>Return Form</h2>
 
-<form id="returnMovie">
-    <div class="form-group">
-        <label>Customer</label>
-        <div class="tt-container">
-            <input id="customer" name="customer" data-rule-validCustomer="true" required type="text" value="" class="form-control" />
-        </div>
-    </div>
+<div class="row">
+    <div class="col-md-4">
+        <form id="returnMovie">
+            <div class="form-group">
+                <label>Customer</label>
+                <div class="tt-container">
+                    <input id="customer" name="customer" data-rule-validCustomer="true" required type="text" value="" class="form-control" />
+                </div>
+            </div>
 
-    <div class="form-group">
-        <label>Movie</label>
-        <div class="tt-container">
-            <input id="movie" name="movie" data-rule-atLeastOneMovie="true" type="text" value="" class="form-control" />
-        </div>
-    </div>
+            <div class="form-group">
+                <label>Movie</label>
+                <div class="tt-container">
+                    <input id="movie" name="movie" data-rule-atLeastOneMovie="true" type="text" value="" class="form-control" />
+                </div>
+            </div>
 
-    <div class="row">
-        <div class="col-md-4 col-sm-4">
-            <ul id="movies" class="list-group"></ul>
-        </div>
-    </div>
+            <div class="form-group">
+                <p class="bold">
+                    Total Price:
+                    <span id="totalPrice"></span>
+                </p>
+            </div>
 
-    <button class="btn btn-primary">Submit</button>
-</form>
+            <button class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    <div class="col-md-4">
+        <p class="bold">Movies:</p>
+        <ul id="movies" class="list-group"></ul>
+    </div>
+</div>
+
 @section scripts
 {
     @Scripts.Render("~/bundles/jqueryval")
@@ -36,7 +46,8 @@
         $(document).ready(function () {
 
             var vm = {
-                movieIds: []
+                movieIds: [],
+                price: 0
             };
 
             var customers = new Bloodhound({
@@ -57,6 +68,7 @@
                 source: customers,
                 limit: 10
             }).on("typeahead:select", function (e, customer) {
+                vm.customer = customer;
                 vm.customerId = customer.id;
             });
 
@@ -79,10 +91,30 @@
                 limit: 10
             }).on("typeahead:select", function (e, movie) {
 
-                $("#movies").append("<li class='list-group-item'>" + movie.name + "</li>");
+                if (typeof(vm.customerId) === "undefined") {
+                    toastr.warning("Please select customer first!");
+                }
+                else {
 
-                vm.movieIds.push(movie.id);
+                    $.ajax({
+                        url: "/api/newRentals/?Id=" + vm.customerId + "&movieId=" + movie.id,
+                        method: "GET",
+                        success: function (data) {
+                            $.ajax({
+                                url: "/api/newRentals/" + data,
+                                method: "GET",
+                                success: function (data) {
+                                    vm.price += data * 2;                                   
+                                    var totalPrice = vm.price * (1 - vm.customer.membershipType.discountRate / 100)                                   
+                                    $("#totalPrice").text(vm.price + "$" + " - " + vm.customer.membershipType.discountRate + "% (Membership) = " + totalPrice + "$");
 
+                                    $("#movies").append("<li class='list-group-item'>" + movie.name + " - days rented: " + data + "</li>");
+                                    vm.movieIds.push(movie.id);
+                                }
+                            })
+                        }
+                    });
+                }
                 $("#movie").typeahead("val", "");
             });
 
@@ -96,11 +128,10 @@
 
             var validator = $("#returnMovie").validate({
                 submitHandler: function () {
-                    @*Change to delete*@
                     console.log(vm.movieIds);
                     $.ajax({
                         url: "/api/newRentals/" + vm.customerId,
-                        method: "DELETE",
+                        method: "PUT",
                         contentType: "application/json",
                         data: JSON.stringify(vm.movieIds)
                     })
@@ -114,6 +145,7 @@
                         vm = { movieIds: [] };
 
                         validator.resetForm();
+                        $("#totalPrice").text("");
                     })
                     .fail(function () {
                         toastr.error("Something unexpected happened");
