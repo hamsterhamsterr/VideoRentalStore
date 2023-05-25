@@ -349,6 +349,10 @@
     <Compile Include="Migrations\202305241438425_Add FirstName and LastName to AspNetUsers table.Designer.cs">
       <DependentUpon>202305241438425_Add FirstName and LastName to AspNetUsers table.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202305250042104_Seed Users and Roles.cs" />
+    <Compile Include="Migrations\202305250042104_Seed Users and Roles.Designer.cs">
+      <DependentUpon>202305250042104_Seed Users and Roles.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
@@ -750,6 +754,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202305241438425_Add FirstName and LastName to AspNetUsers table.resx">
       <DependentUpon>202305241438425_Add FirstName and LastName to AspNetUsers table.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305250042104_Seed Users and Roles.resx">
+      <DependentUpon>202305250042104_Seed Users and Roles.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -10,6 +10,18 @@ namespace Vidly.ViewModels
     {
         [Required]
         // Required for view
+        [Display(Name = "First Name")]
+        [MaxLength(255, ErrorMessage = "Should be less or equal 255 characters")]
+        public string FirstName { get; set; }
+
+        [Required]
+        // Required for view
+        [Display(Name = "Last Name")]
+        [MaxLength(255, ErrorMessage = "Should be less or equal 255 characters")]
+        public string LastName { get; set; }
+
+        [Required]
+        // Required for view
         [Display(Name = "Driving License")]
         public string DrivingLicense { get; set; }
 
