@@ -34,6 +34,10 @@ h2, .h2 {
     color: green;
 }
 
+#delete-user:hover {
+    text-decoration: underline;
+}
+
 .body-content {
     padding-top: 20px;
 }

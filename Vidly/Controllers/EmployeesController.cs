@@ -28,5 +28,18 @@ namespace Vidly.Controllers
 
             return View(employeesVM);
         }
+
+        public ActionResult Delete(string id)
+        {
+            var user = _context.Users.SingleOrDefault(u => u.Id == id);
+
+            if (user == null)
+                return HttpNotFound();
+
+            _context.Users.Remove(user);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
     }
 }
