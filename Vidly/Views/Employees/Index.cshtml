@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Vidly.Models.ApplicationUser>
+﻿@model Vidly.ViewModels.EmployeesViewModel
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -19,14 +19,14 @@
         </tr>        
     </thead>
     <tbody>
-        @foreach (var user in Model)
+        @foreach (var user in Model.ApplicationUsers)
         {
             <tr>
-                <td>(Full Name)</td>
+                <td>@(user.FirstName + " " + user.LastName)</td>
                 <td>@user.Email</td>
                 <td>@user.PhoneNumber</td>
                 <td><button>Delete</button></td>
-                <td>(Role)</td>
+                <td>@Model.UserRole[user]</td>
             </tr>
         }
     </tbody>
