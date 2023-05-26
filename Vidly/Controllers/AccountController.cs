@@ -160,16 +160,24 @@ namespace Vidly.Controllers
                     DrivingLicense = model.DrivingLicense,
                     PhoneNumber = model.Phone,
                     FirstName = model.FirstName,
-                    LastName = model.LastName
+                    LastName = model.LastName,
                 };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    // Temp code
+                    // Temp code for creating first user (admin)
                     //var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
                     //var roleManager = new RoleManager<IdentityRole>(roleStore);
-                    //await roleManager.CreateAsync(new IdentityRole("Employee"));
-                    //await UserManager.AddToRoleAsync(user.Id, "Employee");
+                    //await roleManager.CreateAsync(new IdentityRole("Admin"));
+                    //await UserManager.AddToRoleAsync(user.Id, "Admin");
+
+                    // Code for assigning role to user
+                    var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
+                    var roleManager = new RoleManager<IdentityRole>(roleStore);
+                    await roleManager.CreateAsync(new IdentityRole(model.Role));
+                    await UserManager.AddToRoleAsync(user.Id, model.Role);
+
+
 
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     

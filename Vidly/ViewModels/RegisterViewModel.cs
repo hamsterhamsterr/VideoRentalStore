@@ -22,6 +22,10 @@ namespace Vidly.ViewModels
 
         [Required]
         // Required for view
+        public string Role { get; set; }
+
+        [Required]
+        // Required for view
         [Display(Name = "Driving License")]
         public string DrivingLicense { get; set; }
 
