@@ -34,7 +34,8 @@ h2, .h2 {
     color: green;
 }
 
-#delete-user:hover {
+#delete-user:hover,
+#update-user:hover {
     text-decoration: underline;
 }
 

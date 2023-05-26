@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using Vidly.Models;
 using Vidly.ViewModels;
+using System.Data.Entity;
 
 namespace Vidly.Controllers
 {
@@ -27,6 +28,25 @@ namespace Vidly.Controllers
             var employeesVM = new EmployeesViewModel(users, roles);
 
             return View(employeesVM);
+        }
+
+        public ActionResult Details(string id)
+        {
+            var employee = _context.Users.SingleOrDefault(u => u.Id == id);
+            var roles = _context.Roles.ToList();
+            var role = roles.SingleOrDefault(r => r.Id == employee.Roles.First().RoleId);
+
+
+            if (employee == null || role == null)
+                return HttpNotFound();
+
+            var employeeDetailsVM = new EmployeeDetailsViewModel
+            {
+                Employee = employee,
+                Role = role
+            };
+
+            return View("Employee", employeeDetailsVM);
         }
 
         public ActionResult Delete(string id)

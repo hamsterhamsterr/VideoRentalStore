@@ -14,19 +14,20 @@
             <th>Full Name</th>
             <th>Email</th>
             <th>Phone Number</th>
-            <th>Delete</th>
             <th>Role</th>
+            <th>Delete</th>
         </tr>        
     </thead>
     <tbody>
         @foreach (var user in Model.ApplicationUsers)
         {
             <tr>
-                <td>@(user.FirstName + " " + user.LastName)</td>
+                @*<td>@(user.FirstName + " " + user.LastName)</td>*@
+                <td>@Html.ActionLink($"{user.FirstName} {user.LastName}", "Details", "Employees", new { id = user.Id }, new { @id = "update-user" })</td>
                 <td>@user.Email</td>
                 <td>@user.PhoneNumber</td>
-                <td>@Html.ActionLink("Delete", "Delete", "Employees", new { id = user.Id }, new { @id = "delete-user" })</td>
                 <td>@Model.UserRole[user]</td>
+                <td>@Html.ActionLink("Delete", "Delete", "Employees", new { id = user.Id }, new { @id = "delete-user" })</td>
             </tr>
         }
     </tbody>

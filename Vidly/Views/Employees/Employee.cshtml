@@ -1,0 +1,37 @@
+﻿@model Vidly.ViewModels.EmployeeDetailsViewModel
+@{
+    ViewBag.Title = "Employee";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Employee</h2>
+
+<table class="table table-movie table-hover">
+    <thead></thead>
+    <tbody>
+        <tr>
+            <td>First Name:</td>
+            <td>@Model.Employee.FirstName</td>
+        </tr>
+        <tr>
+            <td>Last Name:</td>
+            <td>@Model.Employee.LastName</td>
+        </tr>
+        <tr>
+            <td>Email:</td>
+            <td>@Model.Employee.Email</td>
+        </tr>
+        <tr>
+            <td>Phone Number</td>
+            <td>@Model.Employee.PhoneNumber</td>
+        </tr>
+        <tr>
+            <td>Driving License</td>
+            <td>@Model.Employee.DrivingLicense</td>
+        </tr>
+        <tr>
+            <td>Role:</td>
+            <td>@Model.Role.Name</td>
+        </tr>
+    </tbody>
+</table>
