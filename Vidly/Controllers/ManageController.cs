@@ -218,6 +218,7 @@ namespace Vidly.Controllers
 
         //
         // GET: /Manage/ChangePassword
+        [AuthorizeEmployee(Roles = RoleName.Admin)]
         public ActionResult ChangePassword(string id)
         {
             var vm = new ChangePasswordViewModel
@@ -232,6 +233,7 @@ namespace Vidly.Controllers
         // POST: /Manage/ChangePassword
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AuthorizeEmployee(Roles = RoleName.Admin)]
         public async Task<ActionResult> ChangePassword(ChangePasswordViewModel model)
         {
             if (!ModelState.IsValid)

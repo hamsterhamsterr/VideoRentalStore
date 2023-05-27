@@ -49,7 +49,7 @@ namespace Vidly.Controllers
 
             return View("Employee", viewModel);
         }
-
+        [AuthorizeEmployee(Roles = RoleName.Admin)]
         public ActionResult Edit(string id)
         {
             var employee = _context.Users.SingleOrDefault(u => u.Id == id);
@@ -68,16 +68,7 @@ namespace Vidly.Controllers
             return View("EmployeeForm", viewModel);
         }
 
-        public ActionResult ChangePassword(string id)
-        {
-            var employee = _context.Users.SingleOrDefault(u => u.Id == id);
-
-            if (employee == null)
-                return HttpNotFound();
-
-            return View("EmployeeChangePasswordForm", employee);
-        }
-
+        [AuthorizeEmployee(Roles = RoleName.Admin)]
         public ActionResult Delete(string id)
         {
             var user = _context.Users.SingleOrDefault(u => u.Id == id);

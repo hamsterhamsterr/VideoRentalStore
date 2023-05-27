@@ -143,7 +143,7 @@ namespace Vidly.Controllers
 
         //
         // GET: /Account/Register
-        [AllowAnonymous]
+        [AuthorizeEmployee(Roles = RoleName.Admin)]
         public ActionResult Register()
         {
             return View();
@@ -152,8 +152,8 @@ namespace Vidly.Controllers
         //
         // POST: /Account/Register
         [HttpPost]
-        [AllowAnonymous]
         [ValidateAntiForgeryToken]
+        [AuthorizeEmployee(Roles = RoleName.Admin)]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
@@ -190,7 +190,7 @@ namespace Vidly.Controllers
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Подтверждение учетной записи", "Подтвердите вашу учетную запись, щелкнув <a href=\"" + callbackUrl + "\">здесь</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Employees");
                 }
                 AddErrors(result);
             }
@@ -201,6 +201,7 @@ namespace Vidly.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AuthorizeEmployee(Roles = RoleName.Admin)]
         public ActionResult Save(EmployeeDetailsViewModel vm)
         {
             var user = _context.Users.SingleOrDefault(u => u.Id == vm.Employee.Id);

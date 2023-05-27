@@ -220,6 +220,7 @@
     <Compile Include="Controllers\Api\NewRentalsController.cs" />
     <Compile Include="Controllers\CustomersController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
+    <Compile Include="Controllers\ErrorsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MoviesController.cs" />
@@ -356,6 +357,7 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="Models\AuthorizeEmployee.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Genre.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -653,6 +655,7 @@
     <Content Include="Views\Employees\Index.cshtml" />
     <Content Include="Views\Employees\Employee.cshtml" />
     <Content Include="Views\Employees\EmployeeForm.cshtml" />
+    <Content Include="Views\Errors\AccessDenied.cshtml" />
     <None Include="Web.Testing.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>
