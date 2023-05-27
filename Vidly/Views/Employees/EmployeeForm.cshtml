@@ -1,0 +1,50 @@
+﻿@model Vidly.ViewModels.EmployeeDetailsViewModel
+@{
+    ViewBag.Title = "EmployeeForm";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Employee.FirstName @Model.Employee.LastName</h2>
+@using (Html.BeginForm("Save", "Account", FormMethod.Post))
+{
+    @Html.ValidationSummary(true, "Please fix the following errors.")
+    <div class="form-group">
+        @Html.LabelFor(m => m.Employee.FirstName)
+        @Html.TextBoxFor(m => m.Employee.FirstName, new { @class="form-control" })
+        @Html.ValidationMessageFor(m => m.Employee.FirstName)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Employee.LastName)
+        @Html.TextBoxFor(m => m.Employee.LastName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Employee.LastName)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Role.Name, "Role")
+        @Html.TextBoxFor(m => m.Role.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Role.Name)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Employee.Email)
+        @Html.TextBoxFor(m => m.Employee.Email, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Employee.Email)
+    </div>
+    @*<div class="form-group">
+        @Html.LabelFor(m => m.Password)
+        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Password)
+    </div>*@
+    <div class="form-group">
+        @Html.LabelFor(m => m.Employee.DrivingLicense)
+        @Html.TextBoxFor(m => m.Employee.DrivingLicense, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Employee.DrivingLicense)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Employee.PhoneNumber)
+        @Html.TextBoxFor(m => m.Employee.PhoneNumber, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Employee.PhoneNumber)
+    </div>
+    @Html.HiddenFor(m => m.Employee.Id)
+    @Html.AntiForgeryToken()
+    <button type="submit" class="btn btn-primary">SAVE</button>
+}
+

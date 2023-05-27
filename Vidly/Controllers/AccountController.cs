@@ -11,6 +11,8 @@ using Microsoft.Owin.Security;
 using Vidly.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Vidly.ViewModels;
+using Microsoft.AspNet.Identity;
+using System.Data.Entity;
 
 namespace Vidly.Controllers
 {
@@ -19,15 +21,18 @@ namespace Vidly.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationDbContext _context;
 
         public AccountController()
         {
+            _context = new ApplicationDbContext();
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            _context = new ApplicationDbContext();
         }
 
         public ApplicationSignInManager SignInManager
@@ -177,8 +182,6 @@ namespace Vidly.Controllers
                     await roleManager.CreateAsync(new IdentityRole(model.Role));
                     await UserManager.AddToRoleAsync(user.Id, model.Role);
 
-
-
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // Дополнительные сведения о том, как включить подтверждение учетной записи и сброс пароля, см. по адресу: http://go.microsoft.com/fwlink/?LinkID=320771
@@ -194,6 +197,33 @@ namespace Vidly.Controllers
 
             // Появление этого сообщения означает наличие ошибки; повторное отображение формы
             return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Save(EmployeeDetailsViewModel vm)
+        {
+            var user = _context.Users.SingleOrDefault(u => u.Id == vm.Employee.Id);
+            var roles = _context.Roles.ToList();
+            var currentUserRole = roles.SingleOrDefault(r => r.Id == user.Roles.First().RoleId);
+
+            if (user == null || currentUserRole == null)
+                return HttpNotFound();                
+
+            user.FirstName = vm.Employee.FirstName;
+            user.LastName = vm.Employee.LastName;
+            user.Email = vm.Employee.Email;
+            user.DrivingLicense = vm.Employee.DrivingLicense;
+            user.PhoneNumber = vm.Employee.PhoneNumber;
+            // Change role code
+
+            UserManager.RemoveFromRole(user.Id, currentUserRole.Name);
+            UserManager.AddToRole(user.Id, vm.Role.Name);
+
+            
+            _context.SaveChanges();
+
+            return RedirectToAction("Index", "Employees");
         }
 
         //

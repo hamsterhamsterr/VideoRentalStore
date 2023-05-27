@@ -652,6 +652,7 @@
     <Content Include="Views\Rentals\Return.cshtml" />
     <Content Include="Views\Employees\Index.cshtml" />
     <Content Include="Views\Employees\Employee.cshtml" />
+    <Content Include="Views\Employees\EmployeeForm.cshtml" />
     <None Include="Web.Testing.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>
