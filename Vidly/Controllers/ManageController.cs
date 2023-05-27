@@ -15,15 +15,18 @@ namespace Vidly.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationDbContext _context;
 
         public ManageController()
         {
+            _context = new ApplicationDbContext();
         }
 
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            _context = new ApplicationDbContext();
         }
 
         public ApplicationSignInManager SignInManager
@@ -215,9 +218,14 @@ namespace Vidly.Controllers
 
         //
         // GET: /Manage/ChangePassword
-        public ActionResult ChangePassword()
+        public ActionResult ChangePassword(string id)
         {
-            return View();
+            var vm = new ChangePasswordViewModel
+            {
+                EmployeeId = id
+            };
+
+            return View(vm);
         }
 
         //
@@ -230,15 +238,18 @@ namespace Vidly.Controllers
             {
                 return View(model);
             }
-            var result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
+            //var result = await UserManager.ChangePasswordAsync(User.Identity.GetUserId(), model.OldPassword, model.NewPassword);
+            var result = await UserManager.ChangePasswordAsync(model.EmployeeId, model.OldPassword, model.NewPassword);
+
             if (result.Succeeded)
             {
-                var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
-                if (user != null)
-                {
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-                }
-                return RedirectToAction("Index", new { Message = ManageMessageId.ChangePasswordSuccess });
+                //var user = await UserManager.FindByIdAsync(User.Identity.GetUserId());
+                //if (user != null)
+                //{
+                //    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                //}
+                //return RedirectToAction("Index", new { Message = ManageMessageId.ChangePasswordSuccess });
+                return RedirectToAction("Index", "Employees", new { Message = ManageMessageId.ChangePasswordSuccess });
             }
             AddErrors(result);
             return View(model);

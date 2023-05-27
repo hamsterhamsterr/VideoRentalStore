@@ -42,6 +42,9 @@ namespace Vidly.Models
     public class ChangePasswordViewModel
     {
         [Required]
+        public string EmployeeId { get; set; }
+
+        [Required]
         [DataType(DataType.Password)]
         [Display(Name = "Текущий пароль")]
         public string OldPassword { get; set; }
