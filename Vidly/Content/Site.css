@@ -32,3 +32,25 @@ label.error {
 input.error {
     border: 2px solid red;
 }
+
+.jumbotron {
+    color: #1E92B3;
+    margin: 25rem 0;
+}
+
+
+/*.about-application {
+    display: flex;
+    justify-content: center;
+}
+
+.about-application a {
+    font-size: 6rem;
+    color: #1FCEFF;
+    text-decoration: none;
+    transition: color .3s;
+}
+
+.about-application a:hover {
+    color: #1E92B3;
+}*/
