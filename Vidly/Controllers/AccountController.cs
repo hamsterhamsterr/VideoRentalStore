@@ -182,7 +182,7 @@ namespace Vidly.Controllers
                     await roleManager.CreateAsync(new IdentityRole(model.Role));
                     await UserManager.AddToRoleAsync(user.Id, model.Role);
 
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+                    //await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // Дополнительные сведения о том, как включить подтверждение учетной записи и сброс пароля, см. по адресу: http://go.microsoft.com/fwlink/?LinkID=320771
                     // Отправка сообщения электронной почты с этой ссылкой
