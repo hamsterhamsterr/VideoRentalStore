@@ -54,3 +54,9 @@ input.error {
 .about-application a:hover {
     color: #1E92B3;
 }*/
+
+.btn-login {
+    padding-right: 13.5rem;
+    padding-left: 11.5rem;
+    font-size: 1.5rem;
+}

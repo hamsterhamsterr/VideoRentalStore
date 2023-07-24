@@ -45,13 +45,15 @@ namespace Vidly.Controllers
 
         public ActionResult Index()
         {
-            if (User.IsInRole(RoleName.Admin))
+            if (User.IsInRole(RoleName.Admin) || User.IsInRole(RoleName.Manager))
                 return View("List");
 
             return View("ReadOnlyList");
         }
 
-        [Authorize(Roles = RoleName.Admin)]
+        //[Authorize(Roles = RoleName.Employee)]
+        //[Authorize(Roles = RoleName.Manager)]
+        //[Authorize(Roles = RoleName.Admin)]
         public ActionResult Details(int id)
         {
             var movie = _context.Movies.Include(m => m.Genre).SingleOrDefault(m => m.Id == id);
@@ -80,9 +82,12 @@ namespace Vidly.Controllers
             return View("MovieForm", viewModel);
         }
 
-        [Authorize(Roles = RoleName.Admin)]
+        
         public ActionResult Edit(int id)
         {
+            if (User.IsInRole(RoleName.Employee))
+                return RedirectToAction("AccessDenied", "Errors");
+
             var movieInDb = _context.Movies.SingleOrDefault(m => m.Id == id);
 
             if (movieInDb == null)

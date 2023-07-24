@@ -23,6 +23,9 @@ namespace Vidly.Controllers
         // GET: Employees
         public ActionResult Index()
         {
+            if (User.IsInRole(RoleName.Employee))
+                return RedirectToAction("AccessDenied", "Errors");
+
             var users = _context.Users.ToList();
             var roles = _context.Roles.ToList();
 
