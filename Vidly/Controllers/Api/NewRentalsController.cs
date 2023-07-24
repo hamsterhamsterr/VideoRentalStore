@@ -27,7 +27,9 @@ namespace Vidly.Controllers.Api
             var rental = _context.Rentals
                 .Include(r => r.Customer)
                 .Include(r => r.Movie)
-                .SingleOrDefault(r => r.Customer.Id == id && r.Movie.Id == movieId);
+                .Where(r => r.Customer.Id == id && r.Movie.Id == movieId && r.DateReturned == null)
+                .First();
+                //.SingleOrDefault(r => r.Customer.Id == id && r.Movie.Id == movieId);
 
             if (rental == null)
                 return NotFound();
@@ -43,7 +45,7 @@ namespace Vidly.Controllers.Api
             if (rental == null)
                 return NotFound();
 
-            var days = (DateTime.Now - rental.DateRented).Days;
+            var days = (DateTime.Now - rental.DateRented).Days + 1;
 
             return Ok(days);
         }

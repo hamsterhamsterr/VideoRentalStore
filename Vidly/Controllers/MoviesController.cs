@@ -70,9 +70,11 @@ namespace Vidly.Controllers
             return Content(year + "/" + month);
         }
 
-        [Authorize(Roles = RoleName.Admin)]
         public ActionResult New()
         {
+            if (User.IsInRole(RoleName.Employee))
+                return RedirectToAction("AccessDenied", "Errors");
+
             var genreTypes = _context.Genres.ToList();
             var viewModel = new MovieFormViewModel
             {

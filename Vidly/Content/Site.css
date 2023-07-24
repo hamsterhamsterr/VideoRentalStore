@@ -60,3 +60,8 @@ input.error {
     padding-left: 11.5rem;
     font-size: 1.5rem;
 }
+
+.nav__username {
+    margin-top: 1.5rem;
+    margin-right: 1rem;
+}

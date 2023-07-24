@@ -19,7 +19,7 @@ namespace Vidly.Models
 
         public static double GetTotalPrice(Customer customer, Rental rental, double? discount)
         {
-            var days = (rental.DateReturned - rental.DateRented).Value.Days;
+            var days = (rental.DateReturned - rental.DateRented).Value.Days + 1;
             var price = days * FEE_DAY * (1 - (customer.MembershipType.DiscountRate / (double)100));
 
             if (!discount.HasValue)
