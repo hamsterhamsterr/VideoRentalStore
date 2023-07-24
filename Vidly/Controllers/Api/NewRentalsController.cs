@@ -108,7 +108,8 @@ namespace Vidly.Controllers.Api
                 payments.Add(new Payment
                 {
                     Rental = rental,
-                    Amount = amount
+                    Amount = amount,
+                    Discount = discount
                 });
             }
 
