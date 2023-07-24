@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Vidly.Models;
 using Vidly.ViewModels;
 using System.Data.Entity;
+using Microsoft.Owin.Security.Provider;
 
 namespace Vidly.Controllers
 {
@@ -107,9 +108,12 @@ namespace Vidly.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = RoleName.Admin)]
         public ActionResult Save(Movie movie)
         {
+            if (User.IsInRole(RoleName.Employee))
+                return RedirectToAction("AccessDenied", "Errors");
+
+
             if (!ModelState.IsValid)
             {
                 var viewModel = new MovieFormViewModel(movie)
@@ -122,6 +126,7 @@ namespace Vidly.Controllers
             if (movie.Id == 0)
             {
                 movie.DateAdded = DateTime.Now;
+                movie.NumberAvailable = movie.NumberInStock;
                 _context.Movies.Add(movie);
             }
             else

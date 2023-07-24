@@ -86,9 +86,12 @@ namespace Vidly.Controllers.Api
         }
 
         [HttpDelete]
-        [Authorize(Roles = RoleName.Admin)]
         public IHttpActionResult DeleteMovie(int id)
         {
+            if (User.IsInRole(RoleName.Employee))
+                return BadRequest();
+
+
             var movie = _context.Movies.SingleOrDefault(m => m.Id == id);
 
             if (movie == null)
