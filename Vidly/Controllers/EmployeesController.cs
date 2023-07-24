@@ -26,10 +26,14 @@ namespace Vidly.Controllers
             if (User.IsInRole(RoleName.Employee))
                 return RedirectToAction("AccessDenied", "Errors");
 
+
             var users = _context.Users.ToList();
             var roles = _context.Roles.ToList();
 
             var employeesVM = new EmployeesViewModel(users, roles);
+
+            if (User.IsInRole(RoleName.Manager))
+                return View("ReadOnlyList", employeesVM);
 
             return View(employeesVM);
         }

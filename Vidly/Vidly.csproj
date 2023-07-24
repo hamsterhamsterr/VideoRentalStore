@@ -656,6 +656,7 @@
     <Content Include="Views\Employees\Employee.cshtml" />
     <Content Include="Views\Employees\EmployeeForm.cshtml" />
     <Content Include="Views\Errors\AccessDenied.cshtml" />
+    <Content Include="Views\Employees\ReadOnlyList.cshtml" />
     <None Include="Web.Testing.config">
       <DependentUpon>Web.config</DependentUpon>
       <SubType>Designer</SubType>

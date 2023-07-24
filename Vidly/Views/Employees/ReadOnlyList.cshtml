@@ -1,0 +1,31 @@
+﻿@model Vidly.ViewModels.EmployeesViewModel
+@{
+    ViewBag.Title = "ReadOnlyList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Employees</h2>
+
+<p class="text-success">@ViewBag.StatusMessage</p>
+
+<table id="employees" class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Full Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Role</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var user in Model.ApplicationUsers)
+        {
+            <tr>
+                <td>@(user.FirstName + " " + user.LastName)</td>
+                <td>@user.Email</td>
+                <td>@user.PhoneNumber</td>
+                <td>@Model.UserRole[user]</td>
+            </tr>
+        }
+    </tbody>
+</table>
